@@ -6,6 +6,7 @@ public class App {
     public static void main(String[] args) {
         Scanner keyboard = new Scanner(System.in);
 
+        // Array for books with a size of 20.
         Book[] books = new Book[20];
 
         // Preload 6 books into array
@@ -16,6 +17,7 @@ public class App {
         books[4] = new Book(5, "9780316769174", "The Catcher in the Rye", null, false);
         books[5] = new Book(6, "9780062315007", "The Alchemist", "Bob Johnson", true);
 
+        // Main function control
         while (true) {
             displayCommands();
             int command = Integer.parseInt(keyboard.nextLine());
@@ -38,6 +40,7 @@ public class App {
 
     }
 
+    // Display main menu commands
     public static void displayCommands() {
         System.out.print("""
                  Welcome to the Neigborhood Library!
@@ -50,9 +53,11 @@ public class App {
                  Please enter command:\s""");
     }
 
+    // Method to display available books, with the option for user to check out a book
     public static void displayAvailableBooks(Book[] books, Scanner keyboard) {
         String userName = "", userBookSelection ="";
 
+        //List books that are available
         System.out.println("Available Books Listed Below: \n");
         for (Book book : books) {
 
@@ -61,6 +66,7 @@ public class App {
             }
         }
 
+        // Take user input
         System.out.print("Would you like to check out a book? (yes or no): ");
         String userResponse = keyboard.nextLine();
 
@@ -74,6 +80,7 @@ public class App {
             System.out.println("Returning to main menu.....");
         }
 
+        // Check out functionality
         for (Book book : books) {
             if (!(book == null) && book.getTitle().equalsIgnoreCase(userBookSelection) && !book.isCheckedOut()) {
                     book.checkOut(userName, userBookSelection);
@@ -81,18 +88,22 @@ public class App {
         }
     }
 
+    // Method to display checked out books, with the option for user to check in a book
     public static void  displayCheckedOutBooks (Book[] books, Scanner keyboard){
         System.out.println("Checked Out Books Listed Below: \n");
         for (Book book : books) {
 
+            // List books that are checked out
             if (!(book == null) && book.isCheckedOut()) {
                 book.displayCheckedOutBooks();
             }
         }
 
+        //User input
         System.out.print("Would you like to check in a book? (c for check in or x for main menu): ");
         String userResponse = keyboard.nextLine().toLowerCase();
 
+        //Based on user input, this switch statement will control whether the check in process begins or not
         switch (userResponse){
             case "c":
                 System.out.print("Please enter the book ID you are checking in: ");

@@ -1,10 +1,12 @@
 package com.plurasight;
 
 public class Book {
+    // Instance variables
     private int id;
     private String isbn, title, checkOutTo;
     private boolean isCheckedOut;
 
+    // Constructor
     public Book(int id, String isbn, String title, String checkOutTo, boolean isCheckedOut) {
         this.id = id;
         this.isbn = isbn;
@@ -13,12 +15,15 @@ public class Book {
         this.isCheckedOut = isCheckedOut;
     }
 
+    //Method to display details for available books
     public void displayAvailableBooks(){
         System.out.println("Book ID: "+ getId());
         System.out.println("Book ISBN: " +getIsbn());
         System.out.println("Book Title: " + getTitle());
         System.out.println("---------------");
     }
+
+    //Method to display details for checked out books
     public void displayCheckedOutBooks(){
         System.out.println("Book ID: "+ getId());
         System.out.println("Book ISBN: " +getIsbn());
@@ -27,6 +32,7 @@ public class Book {
         System.out.println("---------------");
     }
 
+    //Method to handle check out process
     public void checkOut(String name, String title){
         if (!this.isCheckedOut){
             this.isCheckedOut = true;
@@ -40,6 +46,7 @@ public class Book {
         }
     }
 
+    // Method to handle check in process
     public void checkIn(int id){
         if(this.isCheckedOut){
             this.isCheckedOut = false;
@@ -51,7 +58,6 @@ public class Book {
     }
 
     // Setters
-
     public void setId(int id) {
         this.id = id;
     }
@@ -73,7 +79,6 @@ public class Book {
     }
 
     // Getters
-
     public int getId() {
         return id;
     }
@@ -93,9 +98,6 @@ public class Book {
     public boolean isCheckedOut() {
         return isCheckedOut;
     }
-
-
-
 }
 
 
