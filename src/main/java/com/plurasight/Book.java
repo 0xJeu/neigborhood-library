@@ -1,0 +1,97 @@
+package com.plurasight;
+
+public class Book {
+    private int id;
+    private String isbn, title, checkOutTo;
+    private boolean isCheckedOut;
+
+    public Book(int id, String isbn, String title, String checkOutTo, boolean isCheckedOut) {
+        this.id = id;
+        this.isbn = isbn;
+        this.title = title;
+        this.checkOutTo = checkOutTo;
+        this.isCheckedOut = isCheckedOut;
+    }
+
+    public void displayAvailableBooks(){
+        System.out.println("Book ID: "+ getId());
+        System.out.println("Book ISBN: " +getIsbn());
+        System.out.println("Book Title: " + getTitle());
+        System.out.println("---------------");
+    }
+    public void displayCheckedOutBooks(){
+        System.out.println("Book ID: "+ getId());
+        System.out.println("Book ISBN: " +getIsbn());
+        System.out.println("Book Title: " + getTitle());
+        System.out.println("Checked out with: ");
+        System.out.println("---------------");
+    }
+
+    public void checkOut(String name, String title){
+        if (!this.isCheckedOut){
+            this.isCheckedOut = true;
+            this.checkOutTo = name;
+            System.out.println("---------------");
+            System.out.printf("""
+                    %s has been checked out by %s.
+                    Returning to main menu.....
+                    -----------------
+                    """
+                    , title, name);
+        }
+    }
+
+    public void checkIn(){
+
+    }
+
+    // Setters
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setCheckOutTo(String checkOutTo) {
+        this.checkOutTo = checkOutTo;
+    }
+
+    public void setCheckedOut(boolean checkedOut) {
+        isCheckedOut = checkedOut;
+    }
+
+    // Getters
+
+    public int getId() {
+        return id;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getCheckOutTo() {
+        return checkOutTo;
+    }
+
+    public boolean isCheckedOut() {
+        return isCheckedOut;
+    }
+
+
+
+}
+
+
+
