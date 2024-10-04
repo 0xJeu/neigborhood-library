@@ -23,7 +23,7 @@ public class Book {
         System.out.println("Book ID: "+ getId());
         System.out.println("Book ISBN: " +getIsbn());
         System.out.println("Book Title: " + getTitle());
-        System.out.println("Checked out with: ");
+        System.out.println("Checked out with: " + getCheckOutTo());
         System.out.println("---------------");
     }
 
@@ -35,14 +35,19 @@ public class Book {
             System.out.printf("""
                     %s has been checked out by %s.
                     Returning to main menu.....
-                    -----------------
                     """
                     , title, name);
         }
     }
 
-    public void checkIn(){
-
+    public void checkIn(int id){
+        if(this.isCheckedOut){
+            this.isCheckedOut = false;
+            this.checkOutTo = "";
+            System.out.printf("""
+                    ID #%d has been checked in. Thank you!
+                    """, id);
+        }
     }
 
     // Setters

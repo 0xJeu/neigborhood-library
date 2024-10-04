@@ -8,8 +8,6 @@ public class App {
 
         Book[] books = new Book[20];
 
-        int bookCount = 0;
-
         // Preload 6 books into array
         books[0] = new Book(1, "9780061120084", "To Kill a Mockingbird", null, false);
         books[1] = new Book(2, "9780141439518", "Pride and Prejudice", "John Doe", true);
@@ -18,8 +16,6 @@ public class App {
         books[4] = new Book(5, "9780316769174", "The Catcher in the Rye", null, false);
         books[5] = new Book(6, "9780062315007", "The Alchemist", "Bob Johnson", true);
 
-        bookCount = 6;
-
         while (true) {
             displayCommands();
             int command = Integer.parseInt(keyboard.nextLine());
@@ -27,10 +23,11 @@ public class App {
             switch (command) {
                 case 1:
                     displayAvailableBooks(books, keyboard);
+                    System.out.println("---------------");
                     break;
                 case 2:
                     displayCheckedOutBooks(books, keyboard);
-//                    System.out.println("Feature coming soon! \n");
+                    System.out.println("---------------");
                     break;
                 case 3:
                     System.out.println("Thank you for visiting your local library, Goodbye!");
@@ -73,6 +70,8 @@ public class App {
 
             System.out.print("Please enter the name of the person checking the book out: ");
              userName = keyboard.nextLine().toLowerCase();
+        } else {
+            System.out.println("Returning to main menu.....");
         }
 
         for (Book book : books) {
@@ -87,9 +86,33 @@ public class App {
         for (Book book : books) {
 
             if (!(book == null) && book.isCheckedOut()) {
-                book.displayAvailableBooks();
+                book.displayCheckedOutBooks();
             }
         }
+
+        System.out.print("Would you like to check in a book? (c for check in or x for main menu): ");
+        String userResponse = keyboard.nextLine().toLowerCase();
+
+        switch (userResponse){
+            case "c":
+                System.out.print("Please enter the book ID you are checking in: ");
+                int bookID = Integer.parseInt(keyboard.nextLine());
+                for (Book book: books){
+                    if (!(book == null)){
+                        if (book.getId() == bookID && book.isCheckedOut()){
+                            book.checkIn(bookID);
+                        }
+                    }
+                }
+                break;
+            case "x":
+                System.out.println("""
+                    Returning to main menu.....
+                    -----------------""");
+                break;
+        }
+
     }
+
 
 }
